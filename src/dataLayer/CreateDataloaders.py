@@ -29,6 +29,13 @@ class CreateDataloaders():
         self.classes = ('plane', 'car', 'bird', 'cat',
                    'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-
+    def getDataset(self,label):
+        dataset  = torchvision.datasets.CIFAR10(root='./data',
+                                                download=True)
+        data_list = []
+        for i in range(len(dataset)):
+            if dataset.targets[i]==label:
+                data_list.append(dataset.data[i])
+        return data_list
     def getDataloaders(self):
         return self.trainloader, self.testloader, self.classes
