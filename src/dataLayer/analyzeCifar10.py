@@ -18,4 +18,7 @@ class AnalyzeCifar10():
         plt.show()
 
 
+#vise et billede fra hver klasse
+#Et histogram af pixel fordeling for hele datasæt og et for hver klasse
+#Midellværdi for hver klasse og hele pd.var()
 
