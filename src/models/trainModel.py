@@ -6,17 +6,16 @@ import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
 
 class trainInpainting():
-    def __init__(self, trainingImages, testImages, vggNet):
+    def __init__(self, trainingImages, vggNet, path):
         self.training = trainingImages
-        self.testing = testImages
         self.vggNet = vggNet
         self.epochs = 1
-        self.path = r'C:\Users\Morten From\PycharmProjects\ITMALClassifierCifar10\src\models'
+        self.path = path
 
     def traingan(self):
 
         criterion = nn.CrossEntropyLoss().cuda()
-        optimizer = torch.optim.Adam(self.vggNet.parameters(), lr=0.001, betas=(0.9,0.99))
+        optimizer = torch.optim.SGD(self.vggNet.parameters(), lr=0.001, momentum=0.9) #torch.optim.Adam(self.vggNet.parameters(), lr=0.001, betas=(0.9,0.99))
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         def weights_init(m):
             if isinstance(m,nn.Conv2d):
@@ -47,9 +46,11 @@ class trainInpainting():
                 optimizer.step()
 
                 train_loss += loss.item()
-                if i % 2000 == 1999:  # print every 2000 mini-batches
+                if i % 2500 == 2499:  # print every 2000 mini-batches
                     print('[%d, %5d] loss: %.3f' %
-                          (epoch + 1, i + 1, train_loss / 2000))
+                          (epoch + 1, i + 1, train_loss / 2500))
                     train_loss = 0.0
                 i = i+1
-        torch.save(self.vggNet.state_dict(), self.path)
+                #break
+        #torch.save(self.vggNet.state_dict(), self.path)
+        return self.vggNet
