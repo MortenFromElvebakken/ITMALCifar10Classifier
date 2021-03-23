@@ -26,7 +26,6 @@ class testInpainting():
                 labels = labels.to(self.device)
                 outputs = self.vggNet(batchOfImages)
                 _, PredictedLabels = torch.max(outputs.data, 1)
-                PredictedLabels1 = torch.max(outputs.data, 1)
                 TotalGuesses += labels.size(0)
                 CorrectGuesses += (PredictedLabels == labels).sum().item()
 
