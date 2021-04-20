@@ -15,7 +15,12 @@ class AnalyzeCifar10():
         self.trainLoader, self.testLoader, classes = self.dataloaderobj.getDataloaders()
 
     def printHistogram(self,index,name):
-        data = self.dataloaderobj.getDataset(index)
+
+        #For individual class
+        #data = self.dataloaderobj.getDataset(index)
+
+        #For full dataset
+        data = self.trainLoader.dataset.data
         df = []
 
         for i in data:
