@@ -103,7 +103,7 @@ class Vgg11(nn.Module):
         self.third = VGGnet2ConvLayer(128, 264, 3)
         self.fourth = VGGnet2ConvLayer(264, 512, 3)
         self.fifth = VGGnet2ConvLayer(512, 512, 3)
-        self.sixth = VGGnetFullyConnected(512, 4096, 29)
+        self.sixth = VGGnetFullyConnected(512, 4096, 10)
 
     def forward(self, input):
         x1 = self.first(input)
