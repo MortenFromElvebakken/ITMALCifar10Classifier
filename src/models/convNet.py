@@ -82,7 +82,7 @@ class Vgg19(nn.Module):
         self.third = VGGnet4ConvLayer(128, 264, 3)
         self.fourth = VGGnet4ConvLayer(264, 512, 3)
         self.fifth = VGGnet4ConvLayer(512, 512, 3)
-        self.sixth = VGGnetFullyConnected(512, 4096, 29)
+        self.sixth = VGGnetFullyConnected(512, 4096, 10)
 
     def forward(self, input):
         x1 = self.first(input)
